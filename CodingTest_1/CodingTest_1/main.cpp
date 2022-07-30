@@ -1,33 +1,29 @@
 #include <iostream>
-#include <string>
-#include <vector>
+#include <cmath>
 
 using namespace std;
 
-string NUM[10] = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
-int solution(string s) {
-    int answer = 0;
-    int findResult = -1;
-    for (int i = 0; i < 10; i++)
+long long solution(int w, int h) {
+    long long answer = 0;
+    double begin = 0, finish;
+    for (int i = 1; i <= w; i++)
     {
-        while (findResult = s.find(NUM[i]) != string::npos)
-        {
-            s.replace(findResult, NUM[i].length(), to_string(i));
-        }
+        finish = (double)i * h / w;
+        answer += ceil(finish) - floor(begin);
+        begin = finish;
     }
-    answer = stoi(s);
-    return answer;
+    return (long long)w * h - answer;
 }
 
 int main()
 {
     while (1)
     {
-        string myStr;
-        cin >> myStr;
-        cout << solution(myStr) << endl;
+        int w, h;
+        cin >> w>>h;
+        cout << solution(w, h) << endl;
     }   
+
     return 0;
 }
 
