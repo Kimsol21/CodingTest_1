@@ -1,79 +1,29 @@
 #include <iostream>
-#include <string>
 #include <vector>
-
 using namespace std;
-
-int solution(int n, vector<int> lost, vector<int> reserve) {
-    int answer = 0;
-    vector<pair<int, int>> Students;
-    Students.reserve(n);
-    for (int i = 0; i < n; ++i)
-    {
-        Students.push_back(make_pair(i, 1));
-    }
-    for (unsigned int i = 0; i < lost.size(); i++)
-    {
-        Students[lost[i]-1].second -= 1;
-    }
-    for (unsigned int i = 0; i < reserve.size(); i++)
-    {
-        Students[reserve[i]-1].second += 1;
-    }
-
-    vector<pair<int, int>>::iterator iter;
-    for (iter = Students.begin(); iter != Students.end(); ++iter)
-    {
-        int clothes = iter->second;
-        if (iter == Students.begin()) 
-        {
-            if (clothes == 2 && (iter+1)->second < 1)
-            {
-                (iter+1)->second += 1;
-                continue;
-            }
-            else continue;
-        }
-        else if (iter == Students.end() - 1)
-        {
-            if (clothes == 2 && (iter - 1)->second < 1)
-            {
-                (iter - 1)->second += 1;
-                continue;
-            }
-            else continue;
-        }
-        else
-        {
-            if (clothes == 2 && (iter - 1)->second < 1)
-            {
-                (iter - 1)->second += 1;
-                continue;
-            }
-            else if (clothes == 2 && (iter + 1)->second < 1)
-            {
-                (iter + 1)->second += 1;
-                continue;
-            }
-        }       
-    }
-    for (iter = Students.begin(); iter != Students.end(); ++iter)
-    {
-        if (iter->second >= 1)
-            answer += 1;
-    }
-
+vector<int> solution(vector<int> lottos, vector<int> win_nums) {
+    vector<int> answer;
+    int correctNum = 0;
+    int allNums[46] = { 0, };
+    for (int i : lottos) allNums[i] += 1;
+    for (int i : win_nums) allNums[i] += 1;
+    for (int i = 1; i < 46; i++) 
+        if (2 == allNums[i]) correctNum += 1;
+    correctNum < 1 && allNums[0] < 1 ? answer.push_back(6) : answer.push_back(7 - correctNum - allNums[0]);
+    correctNum<2 ? answer.push_back(6) : answer.push_back(7 - correctNum);
     return answer;
 }
 
 int main()
 {
-    vector<int> lost = { 2,4 };
-    vector<int> reserve = { 1, 3, 5 };
-    int n = 5;
-
-    cout << solution(n, lost, reserve);
-
+    vector<int> lottos = { 44, 1, 0, 0, 31, 25 };
+    vector<int> win_nums = { 31, 10, 45, 1, 6, 19 };
+    vector<int> answer;
+    answer = solution(lottos, win_nums);
+    for (int i : answer)
+    {
+        cout << i << endl;
+    }
     return 0;
 }
 
