@@ -1,0 +1,6 @@
+﻿  CodingTest_practice.cpp
+C:\Users\ksol9\source\repos\CodingTest_practice\CodingTest_practice\CodingTest_practice.cpp(13,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\ksol9\source\repos\CodingTest_practice\CodingTest_practice\CodingTest_practice.cpp(25,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\ksol9\source\repos\CodingTest_practice\CodingTest_practice\CodingTest_practice.cpp(27,27): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\ksol9\source\repos\CodingTest_practice\CodingTest_practice\CodingTest_practice.cpp(37,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  CodingTest_practice.vcxproj -> C:\Users\ksol9\source\repos\CodingTest_practice\Debug\CodingTest_practice.exe
