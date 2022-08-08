@@ -1,34 +1,32 @@
 #include <iostream>
-#include <algorithm>
+#include <string>
 #include <vector>
+#include <set>
 
 using namespace std;
 
-vector<int> solution(vector<int> answers) {
+vector<int> solution(vector<int> numbers) {
     vector<int> answer;
-    int order1[5] = { 1, 2, 3, 4, 5 };
-    int order2[8] = { 2, 1, 2, 3, 2, 4, 2, 5};
-    int order3[10] = { 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
-    vector<int> scores = { 0, 0, 0 };
-    int highScore = 0;
-    for (int i = 0; i<answers.size(); i++)
+    set<int> result;
+    int num = numbers.size();
+    for (int i = 0; i < num; i++)
     {
-        if (answers[i] == order1[i % 5]) scores[0]++;
-        if (answers[i] == order2[i % 8]) scores[1]++;
-        if (answers[i] == order3[i % 10]) scores[2]++;
+        for(int k = i + 1; k < num; k++)
+        {
+            result.insert(numbers[i] + numbers[k]);
+        }
     }
-    highScore = *max_element(scores.begin(), scores.end());
-    for (int i = 0; i < scores.size(); i++) 
+    for (int i : result)
     {
-        if (scores[i] == highScore) answer.push_back(i+1);
-    }  
+        answer.push_back(i);
+    }
     return answer;
 }
 
 int main()
 {
-    vector<int>answers = { 1, 2, 3, 4, 5 };
-    vector<int>output = solution(answers);
+    vector<int>numbers = { 2, 1, 3, 4, 1 };
+    vector<int>output = solution(numbers);
     for (int i = 0; i < output.size(); i++) cout << output[i] << endl;
 }
 
