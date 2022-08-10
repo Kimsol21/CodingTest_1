@@ -1,16 +1,22 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-long long solution(int a, int b) {
-    long long answer = 0;
-    if (a <= b) for (int i = a; i <= b; i++) answer += i;
-    else for (int i = b; i <= a; i++) answer += i;
+int solution(vector<int> absolutes, vector<bool> signs) {
+    int answer = 0;
+    for (int i = 0; i < absolutes.size(); i++)
+    {
+        if (signs[i]) answer += absolutes[i];
+        else answer -= absolutes[i];
+    }
     return answer;
 }
 
 int main()
 {
-    cout << solution(5, 3) << endl;
+    vector<int>absolutes = { 4,7,12 };
+    vector<bool>signs = { true, false, true };
+    cout << solution(absolutes, signs) << endl;
 }
 
