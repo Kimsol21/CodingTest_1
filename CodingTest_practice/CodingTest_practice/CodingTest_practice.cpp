@@ -3,20 +3,22 @@
 
 using namespace std;
 
-int solution(vector<int> absolutes, vector<bool> signs) {
-    int answer = 0;
-    for (int i = 0; i < absolutes.size(); i++)
+vector<int> solution(vector<int> arr)
+{
+    vector<int> answer;
+    answer.push_back(arr[0]);
+    for (int i = 1; i < arr.size(); i++)
     {
-        if (signs[i]) answer += absolutes[i];
-        else answer -= absolutes[i];
+        if (arr[i - 1] == arr[i]) continue;
+        else answer.push_back(arr[i]);
     }
     return answer;
 }
 
 int main()
 {
-    vector<int>absolutes = { 4,7,12 };
-    vector<bool>signs = { true, false, true };
-    cout << solution(absolutes, signs) << endl;
+    vector<int>numbers = { 1,1,3,3,0,1,1 };
+    for (auto i : solution(numbers))
+        cout << i << endl;
 }
 
