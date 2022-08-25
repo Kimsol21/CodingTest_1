@@ -1,25 +1,25 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <string>
 
 using namespace std;
 
-int solution(const vector<int> d, int budget) {
-    int answer = 0;
-    vector<int> temp = d;
-    sort(temp.begin(), temp.end());
-    for (auto i : temp)
+bool solution(const string s)
+{
+    bool answer = false;
+    int count = 0;
+    for (auto c : s)
     {
-        budget -= i;
-        if (budget < 0) break;
-        else answer++;
+        if ('p' == c || 'P' == c) count++;
+        else if ('y' == c || 'Y' == c) count--;
+        else continue;
     }
+    if (count == 0 && s.size() > 0) answer = true;
     return answer;
 }
 
 int main()
 {
-    cout << solution({ 1,3,2,5,4 }, 9) << endl;
+    cout << solution("pPoooyY") << endl; //true
     return 0;
 }
 
