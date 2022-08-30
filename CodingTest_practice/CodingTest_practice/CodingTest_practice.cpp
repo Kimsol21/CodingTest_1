@@ -1,25 +1,26 @@
 #include <iostream>
-#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-bool solution(const string s)
-{
-    bool answer = false;
-    int count = 0;
-    for (auto c : s)
+vector<int> solution(vector<int> arr, int divisor) {
+    vector<int> answer;
+    for (auto i : arr)
     {
-        if ('p' == c || 'P' == c) count++;
-        else if ('y' == c || 'Y' == c) count--;
-        else continue;
+        if (i % divisor == 0)
+            answer.push_back(i);
     }
-    if (count == 0 && s.size() > 0) answer = true;
+    if (answer.empty()) answer.push_back(-1);
+    sort(answer.begin(), answer.end());
     return answer;
 }
 
 int main()
 {
-    cout << solution("pPoooyY") << endl; //true
+    vector<int> answer = solution({ 5, 9, 7, 10 }, 5);
+    for(auto i : answer)
+        cout << i << endl;
     return 0;
 }
 
