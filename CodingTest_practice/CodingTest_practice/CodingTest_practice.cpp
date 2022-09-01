@@ -4,23 +4,20 @@
 
 using namespace std;
 
-vector<int> solution(vector<int> arr, int divisor) {
-    vector<int> answer;
-    for (auto i : arr)
-    {
-        if (i % divisor == 0)
-            answer.push_back(i);
-    }
-    if (answer.empty()) answer.push_back(-1);
-    sort(answer.begin(), answer.end());
-    return answer;
+long long solution(int price, int money, int count)
+{
+    long long result;
+    long long myMoney = money;
+    for (long long i = 1; i <= count; i++)
+        myMoney -= price * i;
+    if (myMoney < 0) result = -1 * myMoney;
+    else result = 0;
+    return result;
 }
 
 int main()
 {
-    vector<int> answer = solution({ 5, 9, 7, 10 }, 5);
-    for(auto i : answer)
-        cout << i << endl;
+    cout << solution(3, 20, 4) << endl; //return: 10
     return 0;
 }
 
