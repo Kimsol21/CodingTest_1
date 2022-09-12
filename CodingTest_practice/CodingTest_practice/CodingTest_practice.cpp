@@ -1,23 +1,25 @@
 #include <iostream>
+#include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
-long long solution(int price, int money, int count)
-{
-    long long result;
-    long long myMoney = money;
-    for (long long i = 1; i <= count; i++)
-        myMoney -= price * i;
-    if (myMoney < 0) result = -1 * myMoney;
-    else result = 0;
-    return result;
+vector<int> solution(long long n) {
+    vector<int> answer;
+    string str = to_string(n);
+    reverse(str.begin(), str.end());
+    for (auto i : str)
+    {
+        answer.push_back(i - '0');
+    }
+    return answer;
 }
 
 int main()
 {
-    cout << solution(3, 20, 4) << endl; //return: 10
+    vector<int> answer = solution(12345);
+    for (auto i : answer)
+        cout << i << endl; //return 5,4,3,2,1
     return 0;
 }
 
