@@ -4,22 +4,27 @@
 
 using namespace std;
 
-vector<int> solution(long long n) {
-    vector<int> answer;
-    string str = to_string(n);
-    reverse(str.begin(), str.end());
-    for (auto i : str)
+string solution(string phone_number) {
+    string answer = "";
+    int length = phone_number.size();
+    for (int i = 0; i < length; i++)
     {
-        answer.push_back(i - '0');
+        if (length - i < 5)
+        {
+            answer += phone_number[i];
+            continue;
+        }
+        else
+        {
+            answer += '*';
+        }
     }
     return answer;
 }
 
 int main()
 {
-    vector<int> answer = solution(12345);
-    for (auto i : answer)
-        cout << i << endl; //return 5,4,3,2,1
+    cout << solution("01033334444") << endl; //return "*******4444"
     return 0;
 }
 
