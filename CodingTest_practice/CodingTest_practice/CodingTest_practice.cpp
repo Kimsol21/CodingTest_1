@@ -1,36 +1,40 @@
-#include <iostream>
+#include <string>
 #include <vector>
-#include <algorithm>
+#include <iostream>
 
 using namespace std;
 
- int solution(vector<int>& height) {
-     int answer = 0;
-     int maxHeightIndex = max_element(height.begin(), height.end())-height.begin();
-     int maxHeight = 0;
-     for (int i = 0; i < maxHeightIndex; i++)
-     {
-         if (maxHeight <= height[i]) maxHeight = height[i];
-         else
-         {
-             answer += maxHeight - height[i];
-         }
-     }
-     maxHeight = 0;
-     for (int i = height.size() - 1; i > maxHeightIndex; i--)
-     {
-         if (maxHeight <= height[i]) maxHeight = height[i];
-         else
-         {
-             answer += maxHeight - height[i];
-         }
-     }
-     return answer;
+string solution(string s) {
+    string answer = "";
+    int curIndex = 0;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (' ' == s[i])
+        {
+            curIndex = 0;
+            answer += ' ';
+            continue;
+        }
+        else
+        {
+            if (curIndex % 2 == 0)
+            {
+                if (s[i] >= 'a' && s[i] <= 'z') answer += s[i] - 32;
+                else answer += s[i];
+            }
+            else
+            {
+                if(s[i] >= 'a' && s[i]) answer += s[i];
+                else answer += s[i] + 32;
+            }
+            curIndex++;
+        }
+    }
+    return answer;
 }
 
  int main(void) {
-     vector<int> answer = {4,2,0,3,2,5 };
-     cout << solution(answer) << endl;
+     cout << solution("try hello world") << endl;
      return 0;
 }
 
