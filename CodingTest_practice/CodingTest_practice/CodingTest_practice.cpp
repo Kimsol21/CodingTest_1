@@ -1,40 +1,29 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-string solution(string s) {
-    string answer = "";
-    int curIndex = 0;
-    for (int i = 0; i < s.size(); i++)
+int solution(int n) {
+    int answer = 0;
+    int num = n;
+    vector<int>Nums;
+    while (num >= 3)
     {
-        if (' ' == s[i])
-        {
-            curIndex = 0;
-            answer += ' ';
-            continue;
-        }
-        else
-        {
-            if (curIndex % 2 == 0)
-            {
-                if (s[i] >= 'a' && s[i] <= 'z') answer += s[i] - 32;
-                else answer += s[i];
-            }
-            else
-            {
-                if(s[i] >= 'a' && s[i]) answer += s[i];
-                else answer += s[i] + 32;
-            }
-            curIndex++;
-        }
+        Nums.push_back(num % 3);
+        num = num / 3;
+    }
+    Nums.push_back(num);
+    for (int i = 0; i < Nums.size(); i++)
+    {
+        answer += Nums[i] * pow(3, Nums.size() - i-1);
     }
     return answer;
 }
 
  int main(void) {
-     cout << solution("try hello world") << endl;
+     cout << solution(45) << endl; //return 7
      return 0;
 }
 
