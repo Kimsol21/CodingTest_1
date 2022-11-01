@@ -1,42 +1,29 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 string solution(string s) {
     string answer = "";
-    string temp = "";
-    vector<int> Numbers;
-    int max = 0, min = 0;
-    for (char c : s)
+    
+    answer += toupper(s[0]);
+    for (int i = 1; i < s.size(); i++)
     {
-        if (' ' == c)
+        if (s[i - 1] == ' ')
         {
-            Numbers.push_back(stoi(temp));
-            temp = "";
+            answer += toupper(s[i]);
         }
         else
         {
-            temp += c;
+            answer += tolower(s[i]);
         }
     }
-    if (temp != "")
-    {
-        Numbers.push_back(stoi(temp));
-    }
-    sort(Numbers.begin(), Numbers.end());
-
-    answer += to_string(Numbers[0]);
-    answer += " ";
-    answer += to_string(Numbers[Numbers.size() - 1]);
-
     return answer;
 }
 
  int main(void) {
-     string result = solution({ "-1 -2 -3 -4"	 });
+     string result = solution({ "  3peoPle unFollowed me  hap "	 });//return 3people Unfollowed Me
      cout << result << endl;
      return 0;
 }
