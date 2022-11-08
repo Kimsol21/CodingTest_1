@@ -1,29 +1,61 @@
 #include <iostream>
-#include<vector>
-#include<algorithm>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-int solution(vector<int> A, vector<int> B)
+string BinaryTransformation(int _input)
 {
-    int answer = 0;
-
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
-
-    for (int i = 0; i < A.size(); i++)
+    string temp = "";
+    while (1 < _input)
     {
-        answer += A[i] * B[A.size() - i - 1];
+        temp += to_string(_input % 2);
+        _input = _input / 2;
     }
+    temp += '1';
 
+    reverse(temp.begin(), temp.end());
+
+    return temp;
+}
+
+vector<int> solution(string s) {
+    vector<int> answer;
+    string removedZeroString = "";
+    int removedZero = 0;
+    int countRemoving = 0;
+
+    while (s!="1")
+    {
+        for (char c : s)//0을 빼는 과정.
+        {
+            if ('0' == c)
+            {
+                removedZero++;
+            }
+            else
+            {
+                removedZeroString += c;
+            }
+        }
+        countRemoving++;
+        s = BinaryTransformation(removedZeroString.size());//0을뺀 이진수의 자릿수를 이진변환.
+        removedZeroString.clear();
+        
+    }
+    
+    answer.push_back(countRemoving);
+    answer.push_back(removedZero);
     return answer;
 }
 
  int main(void) {
-     vector<int> A = {1,4,2}; //answer = 29
-     vector<int> B = {5,4,4};
-
-     cout << solution(A, B)<< endl;
+     vector<int> answer = solution("110010101001");
+     for (int i : answer)
+     {
+         cout << i << endl;
+    }
      return 0;
 }
 
