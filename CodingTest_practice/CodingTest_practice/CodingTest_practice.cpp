@@ -1,62 +1,31 @@
-#include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-string BinaryTransformation(int _input)
-{
-    string temp = "";
-    while (1 < _input)
+int solution(int n) {
+    int answer = 0;
+    int sumTotal = 0;
+
+    for (int startNum = 1; startNum < n / 2+1; startNum++)
     {
-        temp += to_string(_input % 2);
-        _input = _input / 2;
-    }
-    temp += '1';
-
-    reverse(temp.begin(), temp.end());
-
-    return temp;
-}
-
-vector<int> solution(string s) {
-    vector<int> answer;
-    string removedZeroString = "";
-    int removedZero = 0;
-    int countRemoving = 0;
-
-    while (s!="1")
-    {
-        for (char c : s)//0을 빼는 과정.
+        int plus = 0;
+        while (sumTotal < n)
         {
-            if ('0' == c)
-            {
-                removedZero++;
-            }
-            else
-            {
-                removedZeroString += c;
-            }
+            sumTotal += startNum + plus;
+            plus++;
         }
-        countRemoving++;
-        s = BinaryTransformation(removedZeroString.size());//0을뺀 이진수의 자릿수를 이진변환.
-        removedZeroString.clear();
-        
+        if (sumTotal == n) answer++;
+        sumTotal = 0;
     }
-    
-    answer.push_back(countRemoving);
-    answer.push_back(removedZero);
-    return answer;
+    return answer+1;
 }
 
- int main(void) {
-     vector<int> answer = solution("110010101001");
-     for (int i : answer)
-     {
-         cout << i << endl;
-    }
-     return 0;
+int main()
+{
+    cout << solution(15) << endl; //result 4
+    return 0;
 }
 
 
